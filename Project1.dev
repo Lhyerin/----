@@ -51,7 +51,7 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit2]
-FileName=basecode\ifct_database.h
+FileName=ifct_database.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -61,7 +61,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=basecode\ifct_element.c
+FileName=ifct_element.c
 CompileCpp=1
 Folder=
 Compile=1
@@ -71,7 +71,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=basecode\ifct_element.h
+FileName=ifct_element.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -81,7 +81,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=basecode\main.c
+FileName=main.c
 CompileCpp=1
 Folder=
 Compile=1
@@ -100,7 +100,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit1]
-FileName=basecode\ifct_database.c
+FileName=ifct_database.c
 CompileCpp=1
 Folder=
 Compile=1
