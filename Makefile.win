@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main.o basecode/ifct_database.o basecode/ifct_element.o basecode/main.o
-LINKOBJ  = main.o basecode/ifct_database.o basecode/ifct_element.o basecode/main.o
+OBJ      = ifct_database.o ifct_element.o main.o
+LINKOBJ  = ifct_database.o ifct_element.o main.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -24,14 +24,11 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-main.o: main.cpp
-	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
+ifct_database.o: ifct_database.c
+	$(CPP) -c ifct_database.c -o ifct_database.o $(CXXFLAGS)
 
-basecode/ifct_database.o: basecode/ifct_database.c
-	$(CPP) -c basecode/ifct_database.c -o basecode/ifct_database.o $(CXXFLAGS)
+ifct_element.o: ifct_element.c
+	$(CPP) -c ifct_element.c -o ifct_element.o $(CXXFLAGS)
 
-basecode/ifct_element.o: basecode/ifct_element.c
-	$(CPP) -c basecode/ifct_element.c -o basecode/ifct_element.o $(CXXFLAGS)
-
-basecode/main.o: basecode/main.c
-	$(CPP) -c basecode/main.c -o basecode/main.o $(CXXFLAGS)
+main.o: main.c
+	$(CPP) -c main.c -o main.o $(CXXFLAGS)

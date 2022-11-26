@@ -46,7 +46,8 @@ int main(int argc, const char * argv[]) {
     //1-2. loading each patient informations
     while(3==fscanf("3가지 읽기", 변수를))
     {
-    	
+    	for 
+    	   fscanf(5개 읽기);
 	}
     //1-3. FILE pointer close
     fclose(fp);
