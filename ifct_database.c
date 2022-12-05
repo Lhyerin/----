@@ -4,7 +4,7 @@
 //  Database platform code for storing infest path elements
 //  Created by Juyeop Kim on 2022/10/20.
 //
-
+/*
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -98,7 +98,7 @@ static int updateIndex(void)
                 2. find the last node in the list
                 3. make the last node's next pointer to point the new node
                 4. update the index
-*/
+
 int ifctdb_addTail(void* obj)
 {
     node_t* ndPtr;
@@ -146,7 +146,7 @@ int ifctdb_addTail(void* obj)
     description : delete data object from the list
     input parameters : index - index'th data to delete
     return value : deletion result (0 - succeeded, -1 - failed)
-*/
+
 int ifctdb_deleteData(int index)
 {
     node_t* ndPrevPtr;
@@ -194,7 +194,7 @@ int ifctdb_deleteData(int index)
 /*
     description : return the number of data objects in the list
     return value : length
-*/
+
 int ifctdb_len(void)
 {
     return list_cnt;
@@ -205,7 +205,7 @@ int ifctdb_len(void)
     description : get the object data
     input parameters : index
     return value : object pointer
-*/
+
 void* ifctdb_getData(int index)
 {
     void* obj = NULL;
@@ -223,3 +223,4 @@ void* ifctdb_getData(int index)
     
     return obj;
 }
+*/

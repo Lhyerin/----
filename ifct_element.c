@@ -97,3 +97,27 @@ char countryName[N_PLACE+1][MAX_PLACENAME] =
     "CapeTown",
     "Unrecognized"
 };
+//return country name pointer from country number
+char* ifctele_getPlaceName(int placeIndex)
+{
+	return countryName[N_HISTORY+1][MAX_PLACENAME];
+}
+
+
+typedef struct ifs_ele {
+	int index;//번호 -> 정수 
+	int age;//나이  -> 정수 
+	unsigned int detected_time;//감염 시점 -> 정수  
+	int history_place[N_HISTORY];//감염 직전 이동경로 -> enum을 활용.(enum place_t) 정수 배열을 선언 (N_HISTORY) 
+}; ifs_ele_t; 
+
+
+static ifs_ele_t ifsarray[20];
+static int ifs_cnt;
+
+int ifctele_getAge(void* obj);
+{
+	inf_ele_t *strPtr ={inf_ele_t *}obj;
+	
+	return();
+}
