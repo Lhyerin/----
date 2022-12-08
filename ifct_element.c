@@ -97,36 +97,48 @@ char countryName[N_PLACE+1][MAX_PLACENAME] =
     "CapeTown",
     "Unrecognized"
 };
+
+
 //return country name pointer from country number
 char* ifctele_getPlaceName(int placeIndex)
 {
-	return countryName[placeIndex+1][MAX_PLACENAME];
+	return countryName[placeIndex];
 }
-
-void* ifsele_genElement()
-{
-	ifsarray 배열의 ifs_cnt번째 요소에 입력 내용 저장;
-	ifs_cnt++;
-	
-	(void*)생성된 구조체의 포인터 반환; 
-}
-
 
 typedef struct ifs_ele {
 	int index; //번호 -> 정수 
 	int age; //나이  -> 정수 
 	unsigned int detected_time; //감염 시점 -> 정수  
-	int history_place[N_HISTORY]; //감염 직전 이동경로 -> enum을 활용.(enum place_t) 정수 배열을 선언 (N_HISTORY) 
-} ifs_ele_t; 
-
-
-static ifs_ele_t ifsarray[20];
-static int ifs_cnt;
+    place_t history_place[N_HISTORY]; //감염 직전 이동경로(개수만큼 있을 거임) -> enum을 활용.(enum place_t) 정수 배열을 선언 (N_HISTORY) 
+} ifs_ele_t; //애칭을 설정해주는 거임. (부르기 편하게) 
 
 /*
+static ifs_ele_t ifsarray[20]; // 바꿀 거라서 임의로 정해준 거다.  
+static int ifs_cnt;
+
+*/
+
+void* ifctele_genElement(int index, int age, unsigned int detected_time, int history_place[N_HISTORY]) //main 함수에서 환자의 정보를 불려왓을 떄 구조체로 만들어서 포인터로 변환해주는 거임. 즉, 얘의 역할은 구조체로 만드는 것.  
+{
+	ifs_ele_t *ptr;
+	
+	ptr = (ifs_ele_t *)malloc(sizeof(ifs_ele_t));
+	ptr->index =index;
+	ptr-> age=age;
+	ptr-> detected_time = detected_time;
+	for (int i=0;i<5;i++)
+		ptr-> history_place[i]= (place_t)history_place[i];
+	
+	return ptr;	
+	//ifctdb_addTail(void* obj);
+	//
+}
+
+void ifctele_printElement(void* obj);
+
 int ifctele_getAge(void* obj)
 {
-	ifs_ele_t *strPtr =ifs_ele_t *obj;
-	return();
+	ifs_ele_t *strPtr =(ifs_ele_t*)obj;
+	return strPtr -> age;
 }
-*/
+

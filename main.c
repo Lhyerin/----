@@ -45,14 +45,13 @@ int main(int argc, const char * argv[]) {
     
     //1-2. loading each patient informations
 
-    while(3==fscanf(fp,"%d %d %d",&pIndex,&age,&time))
+    while(3==fscanf(fp,"%i %i %i",&pIndex,&age,&time))
     {
     	for(int i; i<5;i++)
 		{
-		    placeHist[i] = fscanf (fp, "%d", &placeHist[i]); // i번째 감염경로 숫자를 읽기 
+			fscanf(fp, "%s", &placeHist[i]); // i번째 감염경로 숫자를 읽기   
 		} 
-    	   
-	}
+	};
     //1-3. FILE pointer close
     fclose(fp);
     
@@ -79,8 +78,8 @@ int main(int argc, const char * argv[]) {
                 break;
                 
             case MENU_PLACE:
-                int place1;      //첫번째 장소 
-                int place2;      //두번째 장소
+                //int place1;      //첫번째 장소 
+                //int place2;      //두번째 장소
 				/*
 				printf("The first place is %s\n", ifsele_getPlaceName(place1)) 
 				printf("The second place is %s\n", ifsele_getPlaceName(place2));
@@ -88,7 +87,7 @@ int main(int argc, const char * argv[]) {
 				*/
 				
                 break;
-                
+            /*    
             case MENU_AGE:
                 printf("%i번째 환자 감염 경로:", &pIndex);
                 for(int i=0;i<5;i++)
@@ -97,7 +96,7 @@ int main(int argc, const char * argv[]) {
 				}
                 printf("\n");
                 break;
-                
+            */   
             case MENU_TRACK:
                     
                 break;
