@@ -47,10 +47,12 @@ int main(int argc, const char * argv[]) {
 
     while(3==fscanf(fp,"%i %i %i",&pIndex,&age,&time))
     {
-    	for(int i; i<5;i++)
+    	for(int i=0; i<5;i++)
 		{
-			fscanf(fp, "%s", &placeHist[i]); // i번째 감염경로 숫자를 읽기   
+			fscanf(fp,"%i", &placeHist[i]); // i번째 감염경로 숫자를 읽기   
 		} 
+		ifct_element = ifctele_genElement(pIndex, age, time, placeHist);
+		ifctdb_addTail(ifct_element);
 	};
     //1-3. FILE pointer close
     fclose(fp);
@@ -75,30 +77,33 @@ int main(int argc, const char * argv[]) {
                 break;
                 
             case MENU_PATIENT:
+            	scanf("")
+            	ifct_element = ifctdb_getData(pIndex);//몇번쨰 환자의 구조체 가져오기
+            	ifctele_printElement(ifct_element);
+		        /*
+				for(int i;i<5;i++)
+				   printf("%s",ifsele_getPlaceName(place));
+				printf("\n");
+				
+				*/ 
                 break;
                 
             case MENU_PLACE:
-                //int place1;      //첫번째 장소 
-                //int place2;      //두번째 장소
-				/*
-				printf("The first place is %s\n", ifsele_getPlaceName(place1)) 
-				printf("The second place is %s\n", ifsele_getPlaceName(place2));
-				
-				*/
+                
 				
                 break;
-            /*    
+                
             case MENU_AGE:
+                
+                break;
+               
+            case MENU_TRACK:
                 printf("%i번째 환자 감염 경로:", &pIndex);
                 for(int i=0;i<5;i++)
                 {
-                	printf("%s", ifsele_getPlaceName(placeHist[i]));
+                	printf("%s", ifctele_getPlaceName(placeHist[i]));
 				}
-                printf("\n");
-                break;
-            */   
-            case MENU_TRACK:
-                    
+                printf("\n");   
                 break;
                 
             default:

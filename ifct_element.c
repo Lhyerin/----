@@ -115,7 +115,6 @@ typedef struct ifs_ele {
 /*
 static ifs_ele_t ifsarray[20]; // 바꿀 거라서 임의로 정해준 거다.  
 static int ifs_cnt;
-
 */
 
 void* ifctele_genElement(int index, int age, unsigned int detected_time, int history_place[N_HISTORY]) //main 함수에서 환자의 정보를 불려왓을 떄 구조체로 만들어서 포인터로 변환해주는 거임. 즉, 얘의 역할은 구조체로 만드는 것.  
@@ -134,11 +133,22 @@ void* ifctele_genElement(int index, int age, unsigned int detected_time, int his
 	//
 }
 
-void ifctele_printElement(void* obj);
-
 int ifctele_getAge(void* obj)
 {
 	ifs_ele_t *strPtr =(ifs_ele_t*)obj;
 	return strPtr -> age;
+}
+
+void ifctele_printElement(void* obj)
+{
+	ifs_ele_t *ptr=(ifs_ele_t*)obj;
+	//printf("환자이름:", ptr->index =index);
+	printf("patient age : %i\n", ptr->age); 
+	printf("detected time : %i\n ", ptr->detected_time);
+	
+	//return ptr;
+	
+	//for (int i=0;i<5;i++) -> 원래는 얘네 그 뭐냐 이동경로 출력하려고 했다.  
+	
 }
 
