@@ -145,6 +145,10 @@ void ifctele_printElement(void* obj)
 	//printf("환자이름:", ptr->index =index);
 	printf("patient age : %i\n", ptr->age); 
 	printf("detected time : %i\n ", ptr->detected_time);
+	for(int i=0;i<5;i++)
+	{
+		printf("place %i번째:%i\n",i+1,ptr-> history_place[i]);//여기서 아마 printf를 해야겠지? 주소에 대한 print 
+	}
 	
 	//return ptr;
 	

@@ -77,7 +77,9 @@ int main(int argc, const char * argv[]) {
                 break;
                 
             case MENU_PATIENT:
-            	scanf("")
+            	printf("환자의 번호를 입력하세요: %i",pIndex); // 이거 넣어야 하는지 아닌지 잘 구별은 안 가는데.. 우선 넣어봄.  
+            	scanf("%i",&pIndex);
+            	printf("환자의 번호: %i",pIndex);
             	ifct_element = ifctdb_getData(pIndex);//몇번쨰 환자의 구조체 가져오기
             	ifctele_printElement(ifct_element);
 		        /*
