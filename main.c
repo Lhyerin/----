@@ -77,9 +77,9 @@ int main(int argc, const char * argv[]) {
                 break;
                 
             case MENU_PATIENT:
-            	printf("환자의 번호를 입력하세요: %i",pIndex); // 이거 넣어야 하는지 아닌지 잘 구별은 안 가는데.. 우선 넣어봄.  
+            	pIndex=printf("환자의 번호를 입력하세요:"); // 이거 넣어야 하는지 아닌지 잘 구별은 안 가는데.. 우선 넣어봄.  
             	scanf("%i",&pIndex);
-            	printf("환자의 번호: %i",pIndex);
+            	printf("환자의 번호: %i\n",pIndex);
             	ifct_element = ifctdb_getData(pIndex);//몇번쨰 환자의 구조체 가져오기
             	ifctele_printElement(ifct_element);
 		        /*
@@ -91,7 +91,14 @@ int main(int argc, const char * argv[]) {
                 break;
                 
             case MENU_PLACE:
-                
+            	int place;
+                place=printf("장소를 입력하세요:"); //장소를 문자열로 입력받고
+				scanf("%s",place); // scanf하고
+				//문자열을 다시 정수열로 바꿔서 입력을 한다. ...?  
+				if(placeHist[5]==place) // 마지막 장소== 입력받은 장소 
+				   printf("당첨!"); // 그 사람의 pIndex를 printf 해라 
+				
+				
 				
                 break;
                 
@@ -100,10 +107,9 @@ int main(int argc, const char * argv[]) {
                 break;
                
             case MENU_TRACK:
-                printf("%i번째 환자 감염 경로:", &pIndex);
                 for(int i=0;i<5;i++)
                 {
-                	printf("%s", ifctele_getPlaceName(placeHist[i]));
+                	printf("%s\n", ifctele_getPlaceName(placeHist[i]));
 				}
                 printf("\n");   
                 break;

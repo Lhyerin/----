@@ -144,15 +144,19 @@ void ifctele_printElement(void* obj)
 	ifs_ele_t *ptr=(ifs_ele_t*)obj;
 	//printf("환자이름:", ptr->index =index);
 	printf("patient age : %i\n", ptr->age); 
-	printf("detected time : %i\n ", ptr->detected_time);
+	printf("detected time : %i\n", ptr->detected_time);
 	for(int i=0;i<5;i++)
 	{
-		printf("place %i번째:%i\n",i+1,ptr-> history_place[i]);//여기서 아마 printf를 해야겠지? 주소에 대한 print 
+		printf("place No.%i :%s\n",i+1,ifctele_getPlaceName(ptr-> history_place[i]));  
 	}
 	
 	//return ptr;
 	
 	//for (int i=0;i<5;i++) -> 원래는 얘네 그 뭐냐 이동경로 출력하려고 했다.  
-	
+}
+
+int ifctele_getHistPlaceIndex(void* obj, int index)
+{
+	//
 }
 
