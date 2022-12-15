@@ -129,14 +129,12 @@ void* ifctele_genElement(int index, int age, unsigned int detected_time, int his
 		ptr-> history_place[i]= (place_t)history_place[i];
 	
 	return ptr;	
-	//ifctdb_addTail(void* obj);
-	//
 }
 
 int ifctele_getAge(void* obj)
 {
-	ifs_ele_t *strPtr =(ifs_ele_t*)obj;
-	return strPtr -> age;
+	ifs_ele_t *stPtr =(ifs_ele_t*)obj;
+	return stPtr -> age;
 }
 
 void ifctele_printElement(void* obj)

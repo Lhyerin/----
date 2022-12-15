@@ -93,25 +93,33 @@ int main(int argc, const char * argv[]) {
             case MENU_PLACE:
             	int place;
                 place=printf("장소를 입력하세요:"); //장소를 문자열로 입력받고
-				scanf("%s",place); // scanf하고
-				//문자열을 다시 정수열로 바꿔서 입력을 한다. ...?  
-				if(placeHist[5]==place) // 마지막 장소== 입력받은 장소 
-				   printf("당첨!"); // 그 사람의 pIndex를 printf 해라 
-				
-				
-				
+				scanf("%s",&place); // scanf하고
+				//문자열을 다시 정수열로 바꿔서 입력을 한다..? 
+				//printf("%s",place); // 문자열로 프린트 안됨. 
+				for(int i=0;i<5;i++)
+				{
+					ifct_element = ifctdb_getData(i); // ifct_element 1,2,3,4,5번째 open..? 
+					if(placeHist[4]==place) // 마지막 장소==입력받은 장소(숫자로 변환해야 함) 
+					   printf("%i",pIndex);  // 만약 맞으면 그 사람의 pIndex를 print 
+			    }
                 break;
                 
             case MENU_AGE:
-                
+            	int a,b;
+            	a=printf("최소 숫자를 입력하세요:"); //최소 숫자를 입력받음 
+            	scanf("%d",&a); 
+            	b=printf("최대 숫자를 입력하세요:"); //최대 숫자를 입력받음 
+            	scanf("%d",&b); 
+            	for(int i=0;i<5;i++)     //for문을 돌려서 데이터를 다 읽어 오게끔 
+            	{
+            		ifct_element = ifctdb_getData(i);
+            		if(ifctele_getAge(ifct_element)<b&&age>a)  // if문을 받아와서 만약에 범위에 해당된다면 print하도록 한다.  
+            		    printf("%i\n",ifctele_getAge(ifct_element));
+				}
                 break;
                
             case MENU_TRACK:
-                for(int i=0;i<5;i++)
-                {
-                	printf("%s\n", ifctele_getPlaceName(placeHist[i]));
-				}
-                printf("\n");   
+                  
                 break;
                 
             default:
