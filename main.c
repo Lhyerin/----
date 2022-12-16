@@ -77,27 +77,24 @@ int main(int argc, const char * argv[]) {
                 break;
                 
             case MENU_PATIENT:
-            	pIndex=printf("환자의 번호를 입력하세요:"); // 이거 넣어야 하는지 아닌지 잘 구별은 안 가는데.. 우선 넣어봄.  
-            	scanf("%i",&pIndex);
-            	printf("환자의 번호: %i\n",pIndex);
-            	ifct_element = ifctdb_getData(pIndex);//몇번쨰 환자의 구조체 가져오기
-            	ifctele_printElement(ifct_element);
+            	pIndex=printf("환자의 번호를 입력하세요:"); // 환자번호를 입력받는다. 
+            	scanf("%i",&pIndex); //입력받음. 
+            	printf("환자의 번호: %i\n",pIndex);  //환자번호를 출력한다.  
+            	ifct_element = ifctdb_getData(pIndex); //입력받은 환자번호의 구조체 가져오기
+            	ifctele_printElement(ifct_element);  // 나이, 시간, 장소 print 
                 break;
                 
             case MENU_PLACE:
             	int input_place;
                 input_place=printf("장소를 입력하세요:"); //장소를 문자열로 입력받고
-				scanf("%s",&input_place); // scanf하고
-				//문자열을 다시 정수열로 바꾼다.  
-				//printf("%s",place); // 문자열로 프린트 안됨. 
-				ifct_element = ifctdb_getData(1);
-				printf("%i",placeHist[4]);
+				scanf("%d",&input_place); // scanf함. 
 				for(int i=0;i<5;i++)
 				{
-					ifct_element = ifctdb_getData(i); // ifct_element 1,2,3,4,5번째 open..? 
-					printf("%i",pIndex); 
-					if(placeHist[4]==input_place) // 마지막 장소==입력받은 장소(숫자로 변환해야 함) 
-					   printf("%i",pIndex);  // 만약 맞으면 그 사람의 pIndex를 print 
+					ifct_element = ifctdb_getData(i); // ifct_element 1,2,3,4,5번째 open
+					//printf("%i\n",placeHist[4]);
+					if(placeHist[4]==ifctele_getHistPlaceIndex(ifct_element, input_place)) // 마지막 장소==입력받은 장소(숫자로 변환된) 
+					   printf("제발되었길 바라며");
+					   //ifctele_printElement(ifct_element);  // 만약 맞으면 환자의 정보를 print 
 			    }
                 break;
                 
@@ -116,7 +113,12 @@ int main(int argc, const char * argv[]) {
                 break;
                
             case MENU_TRACK:
-                ifctele_getinfestedTime(ifct_element);
+            	
+            	// 모든 환자의 시간을 받아오고 
+				//내림차순으로 정렬한다. 
+				// 가장 숫자가 낮은 애를 print한다. 
+				// 
+                ifctele_getinfestedTime(ifct_element);  
                 break;
                 
             default:

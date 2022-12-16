@@ -140,7 +140,6 @@ int ifctele_getAge(void* obj)
 void ifctele_printElement(void* obj)
 {
 	ifs_ele_t *ptr=(ifs_ele_t*)obj;
-	//printf("환자이름:", ptr->index =index);
 	printf("patient age : %i\n", ptr->age); 
 	printf("detected time : %i\n", ptr->detected_time);
 	for(int i=0;i<5;i++)
@@ -149,10 +148,11 @@ void ifctele_printElement(void* obj)
 	}
 }
 
-int ifctele_getHistPlaceIndex(void* obj, int index)
+int ifctele_getHistPlaceIndex(void* obj, int index) // 구조체로부터 장소 번호를 추출해주는 함수이다.  (문자열을 받으면 번호를 준다.)  
 {
-	// index를 숫자로 바꾸어주는 작업을 해야 함.  
-	//return 	ptr->index;
+	ifs_ele_t *ptr=(ifs_ele_t*)obj;
+	place_t(index);
+	return ptr-> history_place[index];
 }
 
 unsigned int ifctele_getinfestedTime(void* obj)
