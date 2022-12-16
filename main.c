@@ -82,24 +82,21 @@ int main(int argc, const char * argv[]) {
             	printf("환자의 번호: %i\n",pIndex);
             	ifct_element = ifctdb_getData(pIndex);//몇번쨰 환자의 구조체 가져오기
             	ifctele_printElement(ifct_element);
-		        /*
-				for(int i;i<5;i++)
-				   printf("%s",ifsele_getPlaceName(place));
-				printf("\n");
-				
-				*/ 
                 break;
                 
             case MENU_PLACE:
-            	int place;
-                place=printf("장소를 입력하세요:"); //장소를 문자열로 입력받고
-				scanf("%s",&place); // scanf하고
-				//문자열을 다시 정수열로 바꿔서 입력을 한다..? 
+            	int input_place;
+                input_place=printf("장소를 입력하세요:"); //장소를 문자열로 입력받고
+				scanf("%s",&input_place); // scanf하고
+				//문자열을 다시 정수열로 바꾼다.  
 				//printf("%s",place); // 문자열로 프린트 안됨. 
+				ifct_element = ifctdb_getData(1);
+				printf("%i",placeHist[4]);
 				for(int i=0;i<5;i++)
 				{
 					ifct_element = ifctdb_getData(i); // ifct_element 1,2,3,4,5번째 open..? 
-					if(placeHist[4]==place) // 마지막 장소==입력받은 장소(숫자로 변환해야 함) 
+					printf("%i",pIndex); 
+					if(placeHist[4]==input_place) // 마지막 장소==입력받은 장소(숫자로 변환해야 함) 
 					   printf("%i",pIndex);  // 만약 맞으면 그 사람의 pIndex를 print 
 			    }
                 break;
@@ -113,13 +110,13 @@ int main(int argc, const char * argv[]) {
             	for(int i=0;i<5;i++)     //for문을 돌려서 데이터를 다 읽어 오게끔 
             	{
             		ifct_element = ifctdb_getData(i);
-            		if(ifctele_getAge(ifct_element)<b&&age>a)  // if문을 받아와서 만약에 범위에 해당된다면 print하도록 한다.  
-            		    printf("%i\n",ifctele_getAge(ifct_element));
+            		if(ifctele_getAge(ifct_element)<=b&&age>=a)  // if문을 받아와서 범위에 해당되는지 확인 
+            		    printf("%i\n",ifctele_getAge(ifct_element)); // 해당된다면 age 출력 
 				}
                 break;
                
             case MENU_TRACK:
-                  
+                ifctele_getinfestedTime(ifct_element);
                 break;
                 
             default:

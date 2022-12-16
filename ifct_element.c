@@ -147,14 +147,17 @@ void ifctele_printElement(void* obj)
 	{
 		printf("place No.%i :%s\n",i+1,ifctele_getPlaceName(ptr-> history_place[i]));  
 	}
-	
-	//return ptr;
-	
-	//for (int i=0;i<5;i++) -> 원래는 얘네 그 뭐냐 이동경로 출력하려고 했다.  
 }
 
 int ifctele_getHistPlaceIndex(void* obj, int index)
 {
-	//
+	// index를 숫자로 바꾸어주는 작업을 해야 함.  
+	//return 	ptr->index;
+}
+
+unsigned int ifctele_getinfestedTime(void* obj)
+{
+	ifs_ele_t *stPtr =(ifs_ele_t*)obj;
+	return stPtr -> detected_time;
 }
 
