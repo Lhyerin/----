@@ -126,13 +126,13 @@ void* ifctele_genElement(int index, int age, unsigned int detected_time, int his
 	return ptr;	
 }
 
-int ifctele_getAge(void* obj) //
+int ifctele_getAge(void* obj) //포인터 대상을 받아옵니다. 
 {
 	ifs_ele_t *stPtr =(ifs_ele_t*)obj;
 	return stPtr -> age; //age를 반환해준다. 
 }
 
-void ifctele_printElement(void* obj) //
+void ifctele_printElement(void* obj) //포인터 대상을 받아옵니다. 
 {
 	ifs_ele_t *ptr=(ifs_ele_t*)obj; 
 	printf("patient age : %i\n", ptr->age); //환자의 나이를 출력 
@@ -150,7 +150,7 @@ int ifctele_getHistPlaceIndex(void* obj, int index) // 구조체로부터 장소 번호를 
 	
 }
 
-unsigned int ifctele_getinfestedTime(void* obj)
+unsigned int ifctele_getinfestedTime(void* obj) // (void*obj)=포인터 대상을 받아옵니다. 
 {
 	ifs_ele_t *stPtr =(ifs_ele_t*)obj;
 	return stPtr -> detected_time; //감염된 시점을 ptr. 

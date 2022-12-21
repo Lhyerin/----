@@ -20,12 +20,12 @@
 
 int converTimeToIndex(int time,int infestedTime)
 {
-	int index=-1;
-	if(time<=infestedTime && time >infestedTime-N_HISTORY)
+	int index=-1; //해당 시점에 대한 장소 정보가 없으면 -1 반환 
+	if(time<=infestedTime && time >infestedTime-N_HISTORY) //겹치는 시간이 있는지 확인하는 과정입니다. 
 	{
-		index=N_HISTORY-(infestedTime-time)-1;
+		index=N_HISTORY-(infestedTime-time)-1; //index는 감염시점과 알고싶은 시점이 얼마나 차이나는지 알려줍니다. 
 	}
-	return index;
+	return index; //index로 반환을 해준다. 
 }
 
 int isMet(int detected_time, int index_n) //현재환자의 감염 시점과 대상환자의 번호를 입력받는다.   
