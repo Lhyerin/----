@@ -19,26 +19,22 @@
 #define TIME_HIDE           2
 
 int isMet(int patient_n, int number)
-                {
-                    ifct_element = ifctdb_getData(patient_n);
-					//i번째=ifctele_getinfestedTime(patient_n)-N_HISTORY-i;
-					ifct_element = ifctdb_getData(patient_n);
-					ifctele_getinfestedTime(patient_n)-ifctele_getinfestedTime(number)<N_HISTORY;
-					//계산된 시점에서의 대상환자 이동장소 계산 
-				}
-
+{
+	
+}
 int trackInfester(int patient_no, int *detected_time, int *place)
 {
-    for(i=0;i<pIndex;i++)
+	int influencer=patient_no //전파자 선언해준다.  
+    for(i=1;i<pIndex;i++)
 	{
-		만난시간=isMet(현재환자,patient_no)
-		if(만난시간>0) //만났다면
+		Meet=isMet(i,patient_no)
+		if(Meet>0) //만났다면
 		{
 			if(지금까지 환자 중 만난 시간이 가장 이름가?)
-			   전파자=i; 
+			   influencer=i; 
 		} 
 	}
-	return 전파자; 
+	return influencer; 
 }
 
 int main(int argc, const char * argv[]) {
@@ -114,9 +110,7 @@ int main(int argc, const char * argv[]) {
 				{
 					ifct_element = ifctdb_getData(i); // ifct_element 1,2,3,4,5....,..,번째  open
 					int number=ifctele_getHistPlaceIndex(ifct_element,N_HISTORY-1);
-					printf("%d",number);
 					if (strcpy(ifctele_getPlaceName(number),input_place)==0 ) // 같습니다.
-					   printf("작동은 됩니다."); // 에휴.............................. 
 					   ifctele_printElement(ifct_element);  // 만약 맞으면 환자의 정보를 print 
 			    }
                 break;
@@ -138,18 +132,18 @@ int main(int argc, const char * argv[]) {
             case MENU_TRACK:
             	int input_index;
 				printf("환자번호를 입력하세요:");
-			    scanf("%d",&input_index);  // 현재환자를 입력받아라 
-			    while(input_index<pIndex)
+			    scanf("%d",&input_index);  // 현재환자의 번호를 입력받는다.  
+			    while(input_index<pIndex)  // 현재환자 번호가 범위 안에 포함된다.  
 			    {
 			    	ifct_element = ifctdb_getData(input_index);
-			    	influencer=trackInfester(input_index,ifctele_getinfestedTime(ifct_element),ifctele_getHistPlaceIndex(input_index, int index));
-			    	if(influencer>0)
+			    	influencer=trackInfester(input_index,ifctele_getinfestedTime(ifct_element),ifctele_getHistPlaceIndex(ifct_element, N_HISTORY-1)); //  
+			    	if(influencer>0) //전파자가 존재하면  
 			    	    printf("%i 환자는 %i 환자에게 전파됨\n",input_index,influencer);
 			    	else
 			    	    First_influencer=influencer; //최초 전파자=현재환자
-					input_index=influencer; //현재환자=전파자 
-						 
+					input_index=influencer; //현재환자=전파자 				 
 				}
+				ifctele_getinfestedTime();
 				 
                 
                 break;
