@@ -134,12 +134,12 @@ int ifctele_getAge(void* obj)
 
 void ifctele_printElement(void* obj)
 {
-	ifs_ele_t *ptr=(ifs_ele_t*)obj;
-	printf("patient age : %i\n", ptr->age); 
-	printf("detected time : %i\n", ptr->detected_time);
+	ifs_ele_t *ptr=(ifs_ele_t*)obj; 
+	printf("patient age : %i\n", ptr->age); //환자의 나이를 출력 
+	printf("detected time : %i\n", ptr->detected_time); //감염된 시점을 출력 
 	for(int i=0;i<5;i++)
 	{
-		printf("place No.%i :%s\n",i+1,ifctele_getPlaceName(ptr-> history_place[i]));  
+		printf("place No.%i :%s(%i)\n",i+1,ifctele_getPlaceName(ptr-> history_place[i]),ptr->detected_time-4+i);  // 장소와 함께 시점을 출력 
 	}
 }
 

@@ -23,7 +23,7 @@ int isMet(int patient_n, int number)
 	return 0; //만난시간; 
 	//안 만났으면 -1 반환하 
 }
-int trackInfester(int patient_no, int *detected_time, int *place)
+int trackInfester(int patient_no, int detected_time, int place)
 {
 	int influencer; //전파자 선언해준다.  
     for(int i=1;i<patient_no;i++) //i번째 환자 
@@ -137,7 +137,7 @@ int main(int argc, const char * argv[]) {
                 break;
             
             case MENU_TRACK:
-            	/*
+            	
             	int input_index;
 				printf("환자번호를 입력하세요:");
 			    scanf("%d",&input_index);  // 현재환자의 번호를 입력받는다.  
@@ -148,18 +148,17 @@ int main(int argc, const char * argv[]) {
 			    	if(influencer>0) //전파자가 존재하면
 					{
 						printf("%i 환자는 %i 환자에게 전파됨\n",input_index,influencer); //현재환자와 전파자에 대해 서술해준다. 
-						printf("시점 %i, %s",ifctele_getinfestedTime(ifct_element)-,ifctele_getHistPlaceIndex(ifct_element, N_HISTORY-1)) //시점과 장소를 출력해준다.  
+						printf("시점 %i, %s",ifctele_getinfestedTime(ifct_element)-4,ifctele_getHistPlaceIndex(ifct_element, 1)); //시점과 장소를 출력해준다.  
 					}       
 			    	else // 전파자가 없으면  
 			    	    int First_influencer=influencer; //최초 전파자=현재환자
 						break; //최초 전파자를 찾으면 while문 break 
 					input_index=influencer; //현재환자=전파자 (다시 while문으로 돌아가야 하니깐)				 
 				}
-				ifctele_getinfestedTime();
 				 
                 
                 break;
-                */
+                
                 
             default:
                 printf("[ERROR Wrong menu selection! (%i), please choose between 0 ~ 4\n", menu_selection);
