@@ -17,19 +17,35 @@
 #define MENU_EXIT           0
 
 #define TIME_HIDE           2
-
-int isMet(int patient_n, int number)
+/*
+int converTimeToIndex(int time,int infestedTime)
 {
-	return 0; //만난시간; 
+	int index=-1;
+	if(time<=infestedTime && time >infestedTime-N_HISTORY)
+	{
+		index=N_HISTORY-(infestedTime-time)-1;
+	}
+	return index;
+}
+
+int isMet(int detected_time, int number)
+{
+	for(i=1;i<N_HISTORY;i++)
+	{
+		int Ptime[i]=detected_time-N_HISTORY+i;//현재환자의 i번째 이동장소 시점 계산
+		//위의 상황에서 대상환자의 이동장소 계산 
+	}
+	//만난시간; 
 	//안 만났으면 -1 반환하 
 }
+*/
 int trackInfester(int patient_no, int detected_time, int place)
 {
 	int influencer; //전파자 선언해준다.  
     for(int i=1;i<patient_no;i++) //i번째 환자 
 	{
-		int Meet=isMet(i,patient_no); //만난 시간 선언해준다. (isMet 함수를 사용한다.) 
-		if(Meet>0) //만났다면  
+		//int Meet=isMet(detected_time,patient_no); //만난 시간 선언해준다. (isMet 함수를 사용한다.) 
+		//if(Meet>0) //만났다면  
 		{
 			//if() //지금까지 환자 중 만난 시간이 가장 이른가?
 			   influencer=i; 
@@ -103,15 +119,15 @@ int main(int argc, const char * argv[]) {
                 break;
                 
             case MENU_PLACE:
-            	char input_place[MAX_PLACENAME]; 
+            	char input_place[MAX_PLACENAME]; //문자열을 선언 
                 printf("장소를 입력하세요:"); //장소를 문자열로 입력받고
-				scanf("%s",input_place); // scanf함. 문자열 형태로 저장...? 
+				scanf("%s",input_place); // scanf함. 문자열 형태로 저장
 
 				for(int i=0;i<pIndex+1;i++)
 				{
-					ifct_element = ifctdb_getData(i); // ifct_element 1,2,3,4,5,...,...번째 data를 가져온다.  
-					int number=ifctele_getHistPlaceIndex(ifct_element,N_HISTORY-1);
-					if (strcmp(ifctele_getPlaceName(number),input_place)==0 ) // 같습니다.
+					ifct_element = ifctdb_getData(i); // ifct_element 0,1,2,3,4,번째 data를 가져온다.  
+					int number=ifctele_getHistPlaceIndex(ifct_element,4); //0,1,2,3,4...번째의 5번째 장소의 숫자를 함수로 받고 number에 저장합니다.  
+					if (strcmp(ifctele_getPlaceName(number),input_place)==0 ) // 함수를 이용해 문자열로 바꾼 후 서로 비교합니다.  
 					{
 					    printf("환자번호: %i번\n",i);
 						ifctele_printElement(ifct_element);  // 만약 맞으면 환자의 정보를 print 

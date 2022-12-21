@@ -102,7 +102,7 @@ char countryName[N_PLACE+1][MAX_PLACENAME] =
 //return country name pointer from country number
 char* ifctele_getPlaceName(int placeIndex)
 {
-	return countryName[placeIndex];
+	return countryName[placeIndex]; // 
 }
 
 typedef struct ifs_ele {
@@ -112,12 +112,12 @@ typedef struct ifs_ele {
     place_t history_place[N_HISTORY]; //감염 직전 이동경로(개수만큼 있을 거임) -> enum을 활용.(enum place_t) 정수 배열을 선언 (N_HISTORY) 
 } ifs_ele_t; //애칭을 설정해주는 거임. (부르기 편하게) 
 
-void* ifctele_genElement(int index, int age, unsigned int detected_time, int history_place[N_HISTORY]) //main 함수에서 환자의 정보를 불려왓을 떄 구조체로 만들어서 포인터로 변환해주는 거임. 즉, 얘의 역할은 구조체로 만드는 것.  
+void* ifctele_genElement(int index, int age, unsigned int detected_time, int history_place[N_HISTORY]) //main 함수에서 환자의 정보를 불려왓을 떄 구조체로 만들어서 포인터로 변환해주는)
 {
 	ifs_ele_t *ptr;
 	
 	ptr = (ifs_ele_t *)malloc(sizeof(ifs_ele_t));
-	ptr->index =index;
+	ptr->index =index;  
 	ptr-> age=age;
 	ptr-> detected_time = detected_time;
 	for (int i=0;i<N_HISTORY;i++)
@@ -129,7 +129,7 @@ void* ifctele_genElement(int index, int age, unsigned int detected_time, int his
 int ifctele_getAge(void* obj)
 {
 	ifs_ele_t *stPtr =(ifs_ele_t*)obj;
-	return stPtr -> age;
+	return stPtr -> age; //age를 반환해준다. 
 }
 
 void ifctele_printElement(void* obj)
@@ -146,35 +146,12 @@ void ifctele_printElement(void* obj)
 int ifctele_getHistPlaceIndex(void* obj, int index) // 구조체로부터 장소 번호를 추출해주는 함수이다.  (문자열을 받으면 번호를 준다.)  
 {
 	ifs_ele_t *ptr=(ifs_ele_t*)obj;
-	return ptr->history_place[index];
+	return ptr->history_place[index]; //index번째의 장소 번호를 ptr. 
 	
 }
 
 unsigned int ifctele_getinfestedTime(void* obj)
 {
 	ifs_ele_t *stPtr =(ifs_ele_t*)obj;
-	return stPtr -> detected_time;
-}
-
-
-/*
-int isMet(int patient_n , int numbering)
-{
-	int i; 
-	int time_meet; //만난시간 정의해주었다.  
-	ifct_element = ifctdb_getData(patient_n);
-    int number=ifctele_getHistPlaceIndex(ifct_element,N_HISTORY-1);
-    for (i=1;i<N_HISTORY;i++)
-    {
-		ifct_element = ifctdb_getData(i); 
-        ifctele_getinfestedTime(ifct_element)-N_HISTORY+i; // 현재환자의 i번째 이동시점 
-        ifctele_getinfestedTime(patient_n);//계산된 시점에서의 대상환자 이동장소 계산;
-        if(ifctelement_getinfestedTime(ifct_element)-ifctelement_geninfestedTime(patient_n)>N_HISTORY)
-            time_meet =  ifctelement_getinfestedTime(ifct_element)-ifctelement_geninfestedTime(patient_n);
-            //time_meet+N_HISTORY=i번째임.   
-        if (number == ifctele_getHistPlaceIndex(ifct_element, N_HISYORY-1))
-            time_meet = ifctele_getinfestedTime(patient_n);
-	}
-    return time_meet;
-}
-*/			    
+	return stPtr -> detected_time; //감염된 시점을 ptr. 
+}		    
