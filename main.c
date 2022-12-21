@@ -91,7 +91,7 @@ int main(int argc, const char * argv[]) {
 
 				for(int i=0;i<5;i++)
 				{
-					ifct_element = ifctdb_getData(i); // ifct_element 1,2,3,4,5번째 open
+					ifct_element = ifctdb_getData(i); // ifct_element 1,2,3,4,5....,..,번째  open
 					int number=ifctele_getHistPlaceIndex(ifct_element,N_HISTORY-1);
 					printf("%d",number);
 					if (strcpy(ifctele_getPlaceName(number),input_place)==0 ) // 같습니다.
@@ -115,10 +115,18 @@ int main(int argc, const char * argv[]) {
                 break;
             
             case MENU_TRACK:
+            	int input_index;
+				printf("환자번호를 입력하세요:");
+			    scanf("%d",&input_index);
+			    while(input_index<pIndex)
+			    {
+			    	
+				}
+				 
                 int isMet(int patient_n, int number)
                 {
                     ifct_element = ifctdb_getData(patient_n);
-					i번째=ifctele_getinfestedTime(patient_n)-N_HISTORY-i;
+					//i번째=ifctele_getinfestedTime(patient_n)-N_HISTORY-i;
 					ifct_element = ifctdb_getData(patient_n);
 					ifctele_getinfestedTime(patient_n)-ifctele_getinfestedTime(number)<N_HISTORY;
 					//계산된 시점에서의 대상환자 이동장소 계산 
