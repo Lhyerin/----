@@ -20,17 +20,18 @@
 
 int isMet(int patient_n, int number)
 {
-	
+	return 0; //만난시간; 
+	//안 만났으면 -1 반환하 
 }
 int trackInfester(int patient_no, int *detected_time, int *place)
 {
-	int influencer=patient_no //전파자 선언해준다.  
-    for(i=1;i<pIndex;i++)
+	int influencer; //전파자 선언해준다.  
+    for(int i=1;i<patient_no;i++) //i번째 환자 
 	{
-		Meet=isMet(i,patient_no)
-		if(Meet>0) //만났다면
+		int Meet=isMet(i,patient_no); //만난 시간 선언해준다. (isMet 함수를 사용한다.) 
+		if(Meet>0) //만났다면  
 		{
-			if(지금까지 환자 중 만난 시간이 가장 이름가?)
+			//if() //지금까지 환자 중 만난 시간이 가장 이른가?
 			   influencer=i; 
 		} 
 	}
@@ -106,9 +107,9 @@ int main(int argc, const char * argv[]) {
                 printf("장소를 입력하세요:"); //장소를 문자열로 입력받고
 				scanf("%s",&input_place); // scanf함. 문자열 형태로 저장...? 
 
-				for(int i=0;i<5;i++)
+				for(int i=0;i<pIndex;i++)
 				{
-					ifct_element = ifctdb_getData(i); // ifct_element 1,2,3,4,5....,..,번째  open
+					ifct_element = ifctdb_getData(i); // ifct_element 1,2,3,4,5,...,...번째 data를 가져온다.  
 					int number=ifctele_getHistPlaceIndex(ifct_element,N_HISTORY-1);
 					if (strcpy(ifctele_getPlaceName(number),input_place)==0 ) // 같습니다.
 					   ifctele_printElement(ifct_element);  // 만약 맞으면 환자의 정보를 print 
@@ -117,40 +118,44 @@ int main(int argc, const char * argv[]) {
                 
             case MENU_AGE:
             	int a,b;
-            	a=printf("최소 숫자를 입력하세요:"); //최소 숫자를 입력받음 
-            	scanf("%d",&a); 
-            	b=printf("최대 숫자를 입력하세요:"); //최대 숫자를 입력받음 
-            	scanf("%d",&b); 
-            	for(int i=0;i<5;i++)     //for문을 돌려서 데이터를 다 읽어 오게끔 
+            	printf("최소 숫자를 입력하세요:");  
+            	scanf("%d",&a);   //최소 숫자를 입력받음 
+            	printf("최대 숫자를 입력하세요:");  
+            	scanf("%d",&b);   //최대 숫자를 입력받음
+            	for(int i=0;i<pIndex;i++)     //for문을 돌려서 데이터를 다 읽어 오게끔한다. 
             	{
-            		ifct_element = ifctdb_getData(i);
-            		if(ifctele_getAge(ifct_element)<=b&&age>=a)  // if문을 받아와서 범위에 해당되는지 확인 
+            		ifct_element = ifctdb_getData(i); //i번째 데이터를 받아온다.  
+            		if(ifctele_getAge(ifct_element)<=b&&age>=a)  // i번째 사람의 나이가 범위에 해당되는지 확인 
             		    printf("%i\n",ifctele_getAge(ifct_element)); // 해당된다면 age 출력 
 				}
                 break;
             
             case MENU_TRACK:
+            	
             	int input_index;
 				printf("환자번호를 입력하세요:");
 			    scanf("%d",&input_index);  // 현재환자의 번호를 입력받는다.  
 			    while(input_index<pIndex)  // 현재환자 번호가 범위 안에 포함된다.  
 			    {
-			    	ifct_element = ifctdb_getData(input_index);
-			    	influencer=trackInfester(input_index,ifctele_getinfestedTime(ifct_element),ifctele_getHistPlaceIndex(ifct_element, N_HISTORY-1)); //  
+			    	ifct_element = ifctdb_getData(input_index); //현재환자의 정보를 가져온다.  
+			    	placeHist[N_HISTORY]=ifctele_getHistPlaceIndex(ifct_element, N_HISTORY-1);
+			    	int influencer=trackInfester(input_index,ifctele_getinfestedTime(ifct_element),placeHist[N_HISTORY]); //전염자를 확인하기  
 			    	if(influencer>0) //전파자가 존재하면  
-			    	    printf("%i 환자는 %i 환자에게 전파됨\n",input_index,influencer);
-			    	else
-			    	    First_influencer=influencer; //최초 전파자=현재환자
-					input_index=influencer; //현재환자=전파자 				 
+			    	    printf("%i 환자는 %i 환자에게 전파됨\n",input_index,influencer); //현재환자와 전파자에 대해 서술해준다.  
+			    	else // 전파자가 없으면  
+			    	    int First_influencer=influencer; //최초 전파자=현재환자
+						break;  
+					input_index=influencer; //현재환자=전파자 (다시 while문으로 돌아가야 하니깐)				 
 				}
 				ifctele_getinfestedTime();
 				 
                 
                 break;
+                */
                 
             default:
                 printf("[ERROR Wrong menu selection! (%i), please choose between 0 ~ 4\n", menu_selection);
-                break;
+                break; 
         }
     
     } while(menu_selection != 0);
