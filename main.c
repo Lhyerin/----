@@ -17,7 +17,7 @@
 #define MENU_EXIT           0
 
 #define TIME_HIDE           2
-/*
+
 int converTimeToIndex(int time,int infestedTime)
 {
 	int index=-1;
@@ -30,28 +30,29 @@ int converTimeToIndex(int time,int infestedTime)
 
 int isMet(int detected_time, int number)
 {
-	for(i=1;i<N_HISTORY;i++)
+	for(int i=1;i<N_HISTORY;i++)
 	{
-		int Ptime[i]=detected_time-N_HISTORY+i;//현재환자의 i번째 이동장소 시점 계산
+		int Ptime[N_HISTORY];
+		Ptime[i]=detected_time-N_HISTORY+i;//현재환자의 i번째 이동장소 시점 계산
 		//위의 상황에서 대상환자의 이동장소 계산 
 	}
 	//만난시간; 
 	//안 만났으면 -1 반환하 
 }
-*/
+
 int trackInfester(int patient_no, int detected_time, int place)
 {
 	int influencer; //전파자 선언해준다.  
     for(int i=1;i<patient_no;i++) //i번째 환자 
 	{
-		//int Meet=isMet(detected_time,patient_no); //만난 시간 선언해준다. (isMet 함수를 사용한다.) 
-		//if(Meet>0) //만났다면  
+		int Meet=isMet(detected_time,patient_no); //만난 시간 선언해준다. (isMet 함수를 사용한다.) 
+		if(Meet>0) //만났다면  
 		{
 			//if() //지금까지 환자 중 만난 시간이 가장 이른가?
 			   influencer=i; 
 		} 
 	}
-	return influencer; 
+	return influencer; //전파자를 반환해준다. 
 }
 
 int main(int argc, const char * argv[]) {
@@ -123,14 +124,14 @@ int main(int argc, const char * argv[]) {
                 printf("장소를 입력하세요:"); //장소를 문자열로 입력받고
 				scanf("%s",input_place); // scanf함. 문자열 형태로 저장
 
-				for(int i=0;i<pIndex+1;i++)
+				for(int i=0;i<pIndex+1;i++) //반복문을 환자의 데이터를 다  읽어오게끔 한다. 
 				{
 					ifct_element = ifctdb_getData(i); // ifct_element 0,1,2,3,4,번째 data를 가져온다.  
 					int number=ifctele_getHistPlaceIndex(ifct_element,4); //0,1,2,3,4...번째의 5번째 장소의 숫자를 함수로 받고 number에 저장합니다.  
 					if (strcmp(ifctele_getPlaceName(number),input_place)==0 ) // 함수를 이용해 문자열로 바꾼 후 서로 비교합니다.  
 					{
-					    printf("환자번호: %i번\n",i);
-						ifctele_printElement(ifct_element);  // 만약 맞으면 환자의 정보를 print 
+					    printf("환자번호: %i번\n",i); //환자번호 출력한다. 
+						ifctele_printElement(ifct_element);  // 만약 맞으면 환자의 정보를 print한다. 
 					} 
 			    }
                 break;
@@ -146,20 +147,20 @@ int main(int argc, const char * argv[]) {
             		ifct_element = ifctdb_getData(i); //i번째 데이터를 받아온다.  
             		if(ifctele_getAge(ifct_element)<=b&&age>=a)  // i번째 사람의 나이가 범위에 해당되는지 확인
 					{
-						printf("환자번호: %i번\n",i);
-						ifctele_printElement(ifct_element);
+						printf("환자번호: %i번\n",i); // 해당되면 환자번호를 출력한다. 
+						ifctele_printElement(ifct_element); //환자 나이, 감염시점, 장소를 출력한다. 
 					} 
 				}
                 break;
             
             case MENU_TRACK:
             	
-            	int input_index;
-				printf("환자번호를 입력하세요:");
+            	int input_index; //현재 환자 번호 변수 선언을 한다. 
+				printf("환자번호를 입력하세요:"); 
 			    scanf("%d",&input_index);  // 현재환자의 번호를 입력받는다.  
-			    while(input_index<pIndex+1)  // 현재환자 번호가 범위 안에 포함된다.  
+			    while(input_index<pIndex+1)  // 현재환자 번호가 범위 안에 포함되면 반복문을 돌린다.  
 			    {
-			    	ifct_element = ifctdb_getData(input_index); //현재환자의 정보를 가져온다.  
+			    	ifct_element = ifctdb_getData(input_index); //현재환자의 data를 가져온다.  
 			    	int influencer=trackInfester(input_index,ifctele_getinfestedTime(ifct_element),ifctele_getHistPlaceIndex(ifct_element, N_HISTORY-1)); //전염자를 확인하기  
 			    	if(influencer>0) //전파자가 존재하면
 					{
@@ -167,10 +168,13 @@ int main(int argc, const char * argv[]) {
 						printf("시점 %i, %s",ifctele_getinfestedTime(ifct_element)-4,ifctele_getHistPlaceIndex(ifct_element, 1)); //시점과 장소를 출력해준다.  
 					}       
 			    	else // 전파자가 없으면  
-			    	    int First_influencer=influencer; //최초 전파자=현재환자
+			    	{
+			    		int First_influencer=influencer; //최초 전파자=현재환자
+			    		printf("최초 전파자는:%i",First_influencer);
 						break; //최초 전파자를 찾으면 while문 break 
+					}
 					input_index=influencer; //현재환자=전파자 (다시 while문으로 돌아가야 하니깐)				 
-				}
+			}
 				 
                 
                 break;
