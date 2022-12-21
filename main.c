@@ -28,11 +28,11 @@ int converTimeToIndex(int time,int infestedTime)
 	return index;
 }
 
-int isMet(int detected_time, int number)
+int isMet(int detected_time, int index_n) //현재환자의 감염 시점과 대상환자의 번호를 입력받는다.   
 {
 	for(int i=1;i<N_HISTORY;i++)
 	{
-		int Ptime[N_HISTORY];
+		int Ptime[N_HISTORY]; //현재환자의 i번째 이동장소 시점 선언 
 		Ptime[i]=detected_time-N_HISTORY+i;//현재환자의 i번째 이동장소 시점 계산
 		//위의 상황에서 대상환자의 이동장소 계산 
 	}
@@ -40,12 +40,12 @@ int isMet(int detected_time, int number)
 	//안 만났으면 -1 반환하 
 }
 
-int trackInfester(int patient_no, int detected_time, int place)
+int trackInfester(int patient_no, int detected_time, int place) 
 {
 	int influencer; //전파자 선언해준다.  
     for(int i=1;i<patient_no;i++) //i번째 환자 
 	{
-		int Meet=isMet(detected_time,patient_no); //만난 시간 선언해준다. (isMet 함수를 사용한다.) 
+		int Meet=isMet(detected_time,i); //만난 시간 선언해준다. (isMet 함수를 사용한다.) 
 		if(Meet>0) //만났다면  
 		{
 			//if() //지금까지 환자 중 만난 시간이 가장 이른가?
@@ -120,7 +120,7 @@ int main(int argc, const char * argv[]) {
                 break;
                 
             case MENU_PLACE:
-            	char input_place[MAX_PLACENAME]; //문자열을 선언 
+            	char input_place[MAX_PLACENAME]; //문자배열을 선언 
                 printf("장소를 입력하세요:"); //장소를 문자열로 입력받고
 				scanf("%s",input_place); // scanf함. 문자열 형태로 저장
 
@@ -170,7 +170,7 @@ int main(int argc, const char * argv[]) {
 			    	else // 전파자가 없으면  
 			    	{
 			    		int First_influencer=influencer; //최초 전파자=현재환자
-			    		printf("최초 전파자는:%i",First_influencer);
+			    		printf("최초 전파자는:%i",First_influencer); //최초전파자를 출력해준다.  
 						break; //최초 전파자를 찾으면 while문 break 
 					}
 					input_index=influencer; //현재환자=전파자 (다시 while문으로 돌아가야 하니깐)				 

@@ -100,7 +100,7 @@ char countryName[N_PLACE+1][MAX_PLACENAME] =
 
 
 //return country name pointer from country number
-char* ifctele_getPlaceName(int placeIndex)
+char* ifctele_getPlaceName(int placeIndex) //placeindex는 장소번호로, 장소번호를 받아온다.  
 {
 	return countryName[placeIndex]; // 
 }
@@ -117,22 +117,22 @@ void* ifctele_genElement(int index, int age, unsigned int detected_time, int his
 	ifs_ele_t *ptr;
 	
 	ptr = (ifs_ele_t *)malloc(sizeof(ifs_ele_t));
-	ptr->index =index;  
-	ptr-> age=age;
-	ptr-> detected_time = detected_time;
-	for (int i=0;i<N_HISTORY;i++)
+	ptr->index =index;  //번호 
+	ptr-> age=age;     //나이  
+	ptr-> detected_time = detected_time;   //감염시점 
+  	for (int i=0;i<N_HISTORY;i++)      // 반복문을 돌려서 i번째 장소를 나타낸다. 
 		ptr-> history_place[i]= (place_t)history_place[i];
 	
 	return ptr;	
 }
 
-int ifctele_getAge(void* obj)
+int ifctele_getAge(void* obj) //
 {
 	ifs_ele_t *stPtr =(ifs_ele_t*)obj;
 	return stPtr -> age; //age를 반환해준다. 
 }
 
-void ifctele_printElement(void* obj)
+void ifctele_printElement(void* obj) //
 {
 	ifs_ele_t *ptr=(ifs_ele_t*)obj; 
 	printf("patient age : %i\n", ptr->age); //환자의 나이를 출력 
