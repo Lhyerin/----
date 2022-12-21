@@ -77,7 +77,7 @@ int main(int argc, const char * argv[]) {
                 break;
                 
             case MENU_PATIENT:
-            	pIndex=printf("환자의 번호를 입력하세요:"); // 환자번호를 입력받는다. 
+            	printf("환자의 번호를 입력하세요:"); // 환자번호를 입력받는다. 
             	scanf("%i",&pIndex); //입력받음. 
             	printf("환자의 번호: %i\n",pIndex);  //환자번호를 출력한다.  
             	ifct_element = ifctdb_getData(pIndex); //입력받은 환자번호의 구조체 가져오기
@@ -85,16 +85,18 @@ int main(int argc, const char * argv[]) {
                 break;
                 
             case MENU_PLACE:
-            	int input_place;
-                input_place=printf("장소를 입력하세요:"); //장소를 문자열로 입력받고
-				scanf("%d",&input_place); // scanf함. 
+            	char* input_place;
+                printf("장소를 입력하세요:"); //장소를 문자열로 입력받고
+				scanf("%s",&input_place); // scanf함. 문자열 형태로 저장...? 
+
 				for(int i=0;i<5;i++)
 				{
 					ifct_element = ifctdb_getData(i); // ifct_element 1,2,3,4,5번째 open
-					//printf("%i\n",placeHist[4]);
-					if(placeHist[4]==ifctele_getHistPlaceIndex(ifct_element, input_place)) // 마지막 장소==입력받은 장소(숫자로 변환된) 
-					   printf("제발되었길 바라며");
-					   //ifctele_printElement(ifct_element);  // 만약 맞으면 환자의 정보를 print 
+					int number=ifctele_getHistPlaceIndex(ifct_element,N_HISTORY-1);
+					printf("%d",number);
+					if (strcpy(ifctele_getPlaceName(number),input_place)==0 ) // 같습니다.
+					   printf("작동은 됩니다."); // 에휴.............................. 
+					   ifctele_printElement(ifct_element);  // 만약 맞으면 환자의 정보를 print 
 			    }
                 break;
                 
@@ -111,14 +113,16 @@ int main(int argc, const char * argv[]) {
             		    printf("%i\n",ifctele_getAge(ifct_element)); // 해당된다면 age 출력 
 				}
                 break;
-               
+            
             case MENU_TRACK:
-            	
-            	// 모든 환자의 시간을 받아오고 
-				//내림차순으로 정렬한다. 
-				// 가장 숫자가 낮은 애를 print한다. 
-				// 
-                ifctele_getinfestedTime(ifct_element);  
+                int isMet(int patient_n, int number)
+                {
+                    ifct_element = ifctdb_getData(patient_n);
+					i번째=ifctele_getinfestedTime(patient_n)-N_HISTORY-i;
+					ifct_element = ifctdb_getData(patient_n);
+					ifctele_getinfestedTime(patient_n)-ifctele_getinfestedTime(number)<N_HISTORY;
+					//계산된 시점에서의 대상환자 이동장소 계산 
+				}
                 break;
                 
             default:

@@ -112,11 +112,6 @@ typedef struct ifs_ele {
     place_t history_place[N_HISTORY]; //감염 직전 이동경로(개수만큼 있을 거임) -> enum을 활용.(enum place_t) 정수 배열을 선언 (N_HISTORY) 
 } ifs_ele_t; //애칭을 설정해주는 거임. (부르기 편하게) 
 
-/*
-static ifs_ele_t ifsarray[20]; // 바꿀 거라서 임의로 정해준 거다.  
-static int ifs_cnt;
-*/
-
 void* ifctele_genElement(int index, int age, unsigned int detected_time, int history_place[N_HISTORY]) //main 함수에서 환자의 정보를 불려왓을 떄 구조체로 만들어서 포인터로 변환해주는 거임. 즉, 얘의 역할은 구조체로 만드는 것.  
 {
 	ifs_ele_t *ptr;
@@ -151,8 +146,8 @@ void ifctele_printElement(void* obj)
 int ifctele_getHistPlaceIndex(void* obj, int index) // 구조체로부터 장소 번호를 추출해주는 함수이다.  (문자열을 받으면 번호를 준다.)  
 {
 	ifs_ele_t *ptr=(ifs_ele_t*)obj;
-	place_t(index);
-	return ptr-> history_place[index];
+	return ptr->history_place[index];
+	
 }
 
 unsigned int ifctele_getinfestedTime(void* obj)
@@ -161,3 +156,25 @@ unsigned int ifctele_getinfestedTime(void* obj)
 	return stPtr -> detected_time;
 }
 
+
+/*
+int isMet(int patient_n , int numbering)
+{
+	int i; 
+	int time_meet; //만난시간 정의해주었다.  
+	ifct_element = ifctdb_getData(patient_n);
+    int number=ifctele_getHistPlaceIndex(ifct_element,N_HISTORY-1);
+    for (i=1;i<N_HISTORY;i++)
+    {
+		ifct_element = ifctdb_getData(i); 
+        ifctele_getinfestedTime(ifct_element)-N_HISTORY+i; // 현재환자의 i번째 이동시점 
+        ifctele_getinfestedTime(patient_n);//계산된 시점에서의 대상환자 이동장소 계산;
+        if(ifctelement_getinfestedTime(ifct_element)-ifctelement_geninfestedTime(patient_n)>N_HISTORY)
+            time_meet =  ifctelement_getinfestedTime(ifct_element)-ifctelement_geninfestedTime(patient_n);
+            //time_meet+N_HISTORY=i번째임.   
+        if (number == ifctele_getHistPlaceIndex(ifct_element, N_HISYORY-1))
+            time_meet = ifctele_getinfestedTime(patient_n);
+	}
+    return time_meet;
+}
+*/			    
