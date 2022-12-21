@@ -128,26 +128,31 @@ int main(int argc, const char * argv[]) {
             	for(int i=0;i<pIndex+1;i++)     //for문을 돌려서 데이터를 다 읽어 오게끔한다. 
             	{
             		ifct_element = ifctdb_getData(i); //i번째 데이터를 받아온다.  
-            		if(ifctele_getAge(ifct_element)<=b&&age>=a)  // i번째 사람의 나이가 범위에 해당되는지 확인 
-            		    printf("%i\n",ifctele_getAge(ifct_element)); // 해당된다면 age 출력 
+            		if(ifctele_getAge(ifct_element)<=b&&age>=a)  // i번째 사람의 나이가 범위에 해당되는지 확인
+					{
+						printf("환자번호: %i번\n",i);
+						ifctele_printElement(ifct_element);
+					} 
 				}
                 break;
             
             case MENU_TRACK:
-            	
+            	/*
             	int input_index;
 				printf("환자번호를 입력하세요:");
 			    scanf("%d",&input_index);  // 현재환자의 번호를 입력받는다.  
 			    while(input_index<pIndex+1)  // 현재환자 번호가 범위 안에 포함된다.  
 			    {
 			    	ifct_element = ifctdb_getData(input_index); //현재환자의 정보를 가져온다.  
-			    	placeHist[N_HISTORY]=ifctele_getHistPlaceIndex(ifct_element, N_HISTORY-1);
-			    	int influencer=trackInfester(input_index,ifctele_getinfestedTime(ifct_element),placeHist[N_HISTORY]); //전염자를 확인하기  
-			    	if(influencer>0) //전파자가 존재하면  
-			    	    printf("%i 환자는 %i 환자에게 전파됨\n",input_index,influencer); //현재환자와 전파자에 대해 서술해준다.  
+			    	int influencer=trackInfester(input_index,ifctele_getinfestedTime(ifct_element),ifctele_getHistPlaceIndex(ifct_element, N_HISTORY-1)); //전염자를 확인하기  
+			    	if(influencer>0) //전파자가 존재하면
+					{
+						printf("%i 환자는 %i 환자에게 전파됨\n",input_index,influencer); //현재환자와 전파자에 대해 서술해준다. 
+						printf("시점 %i, %s",ifctele_getinfestedTime(ifct_element)-,ifctele_getHistPlaceIndex(ifct_element, N_HISTORY-1)) //시점과 장소를 출력해준다.  
+					}       
 			    	else // 전파자가 없으면  
 			    	    int First_influencer=influencer; //최초 전파자=현재환자
-						break;  
+						break; //최초 전파자를 찾으면 while문 break 
 					input_index=influencer; //현재환자=전파자 (다시 while문으로 돌아가야 하니깐)				 
 				}
 				ifctele_getinfestedTime();

@@ -120,7 +120,7 @@ void* ifctele_genElement(int index, int age, unsigned int detected_time, int his
 	ptr->index =index;
 	ptr-> age=age;
 	ptr-> detected_time = detected_time;
-	for (int i=0;i<5;i++)
+	for (int i=0;i<N_HISTORY;i++)
 		ptr-> history_place[i]= (place_t)history_place[i];
 	
 	return ptr;	
